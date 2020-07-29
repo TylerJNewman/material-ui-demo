@@ -330,7 +330,7 @@ const Topbar = props => {
             onClick={onSidebarOpen}
             aria-label="Menu"
           >
-            <MenuIcon />
+            <MenuIcon color="primary"/>
           </IconButton>
         </Hidden>
       </Toolbar>

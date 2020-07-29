@@ -7,7 +7,7 @@ export default {
   black,
   white,
   alternate: 'rgb(247, 249, 250)',
-  secondary: {
+  primary: {
     main: '#FF6E5A',
   },
   success: {
