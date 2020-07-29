@@ -17,6 +17,7 @@ import {
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
 
 import { Image } from 'components/atoms';
 
@@ -119,7 +120,7 @@ const CustomRouterLink = forwardRef((props, ref) => (
 ));
 
 const Topbar = props => {
-  const { onSidebarOpen, pages, ...rest } = props;
+  const { onSidebarOpen, onSidebarClose, openSidebar, pages, ...rest } = props;
 
   const classes = useStyles();
 
@@ -326,13 +327,20 @@ const Topbar = props => {
           </List>
         </Hidden>
         <Hidden mdUp>
-          <IconButton
+        {openSidebar ?  (<IconButton
+            className={classes.iconButton}
+            onClick={onSidebarClose}
+            aria-label="Menu"
+          >
+            <CloseIcon color="primary"/>
+          </IconButton>) : (<IconButton
             className={classes.iconButton}
             onClick={onSidebarOpen}
             aria-label="Menu"
           >
             <MenuIcon color="primary"/>
-          </IconButton>
+          </IconButton>)}
+
         </Hidden>
       </Toolbar>
     </AppBar>
@@ -342,6 +350,7 @@ const Topbar = props => {
 Topbar.propTypes = {
   className: PropTypes.string,
   onSidebarOpen: PropTypes.func,
+  onSidebarClose: PropTypes.func,
   pages: PropTypes.object.isRequired,
 };
 

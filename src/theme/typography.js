@@ -1,6 +1,7 @@
 import palette from './palette';
 
 export default {
+  htmlFontSize: 14,
   h1: {
     color: palette.text.primary,
     fontWeight: 700,
@@ -55,13 +56,11 @@ export default {
     lineHeight: 1.4,
   },
   body1: {
-    color: palette.text.primary,
     fontSize: '18px',
     fontWeight: 400,
     lineHeight: 1.4,
   },
   body2: {
-    color: palette.text.secondary,
     fontSize: '18px',
     fontWeight: 400,
     lineHeight: 1.4,
