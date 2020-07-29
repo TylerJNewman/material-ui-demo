@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     boxShadow: 'none',
     background: theme.palette.white,
-    borderBottom: `1px solid ${colors.grey[200]}`,
+    paddingRight: 15
   },
   flexGrow: {
     flexGrow: 1,
@@ -247,8 +247,9 @@ const Topbar = props => {
   return (
     <AppBar
       {...rest}
-      position="relative"
+      position="fixed"
       className={classes.root}
+      elevation={0}
     >
       <Toolbar  className={classes.toolbar}>
         <div className={classes.logoContainer}>

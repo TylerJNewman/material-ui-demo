@@ -327,13 +327,13 @@ const Main = props => {
       })}
     >
       <Topbar onSidebarOpen={handleSidebarOpen} pages={pages} />
-      <Sidebar
+      <main >
+        <Sidebar
         onClose={handleSidebarClose}
         open={open}
         variant="temporary"
         pages={pages}
-      />
-      <main >{children}</main>
+      />{children}</main>
       <Footer pages={pages} />
     </div>
   );

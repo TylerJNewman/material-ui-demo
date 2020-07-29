@@ -8,7 +8,13 @@ import { SidebarNav } from './components';
 
 const useStyles = makeStyles(theme => ({
   drawer: {
-    width: '100%'
+    width: '100%',
+    height: "calc(100% - 9.5vh)",
+    marginTop: "9.5vh",
+  },
+  drawerRoot: {
+    height: "calc(100% - 9.5vh)",
+    marginTop: "9.5vh",
   },
   root: {
     display: 'flex',
@@ -29,10 +35,12 @@ const Sidebar = props => {
   return (
     <Drawer
       anchor="left"
-      classes={{ paper: classes.drawer }}
+      hideBackdrop
+      classes={{ paper: classes.drawer, root: classes.drawerRoot }}
       onClose={onClose}
       open={open}
       variant={variant}
+      elevation={0}
     >
       <div {...rest} className={clsx(classes.root, className)}>
         <SidebarNav className={classes.nav} pages={pages} onClose={onClose} />
