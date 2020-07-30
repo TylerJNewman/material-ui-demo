@@ -8,6 +8,10 @@ import { Topbar, Footer, Sidebar } from '../src/layout'
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100%'
+  },
+  headerSpacer: {
+    width: '100vw',
+    height: '9.5vh'
   }
 }))
 
@@ -123,6 +127,7 @@ const Main = props => {
         onSidebarOpen={handleSidebarOpen} onSidebarClose={handleSidebarClose} openSidebar={openSidebar}
         pages={pages}
       />
+      <div className={classes.headerSpacer} />
       <Sidebar
         onClose={handleSidebarClose}
         open={open}
