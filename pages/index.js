@@ -1,346 +1,140 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { useMediaQuery } from '@material-ui/core';
-import { Topbar, Footer, Sidebar } from "../src/layout";
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import clsx from 'clsx'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { useMediaQuery } from '@material-ui/core'
+import { Topbar, Footer, Sidebar } from '../src/layout'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: '100%',
-  },
-}));
+    height: '100%'
+  }
+}))
 
 const Main = props => {
-  const { children } = props;
+  const { children } = props
 
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const theme = useTheme();
+  const theme = useTheme()
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true,
-  });
+    defaultMatches: true
+  })
 
-  const pages = {
-    landings: {
-      title: 'Landings',
-      id: 'landing-pages',
-      children: {
-        services: {
-          groupTitle: 'Services',
-          pages: [
-            {
-              title: 'Coworking',
-              href: '/coworking',
-            },
-            {
-              title: 'Rental',
-              href: '/rental',
-            },
-            {
-              title: 'Job Listing',
-              href: '/job-listing',
-            },
-            {
-              title: 'E-Learning',
-              href: '/e-learning',
-            },
-            {
-              title: 'E-commerce',
-              href: '/e-commerce',
-            },
-            {
-              title: 'Expo',
-              href: '/expo',
-            },
-          ],
+  const pages = [
+    {
+      groupTitle: 'Solution',
+      pages: [
+        {
+          title: 'Research Agencies',
+          href: '/research-agencies'
         },
-        apps: {
-          groupTitle: 'Apps',
-          pages: [
-            {
-              title: 'Desktop App',
-              href: '/desktop-app',
-            },
-            {
-              title: 'Mobile App',
-              href: '/mobile-app',
-            },
-          ],
+        {
+          title: 'Brands',
+          href: '/brands'
         },
-        web: {
-          groupTitle: 'Web',
-          pages: [
-            {
-              title: 'Overview',
-              href: '/home',
-            },
-            {
-              title: 'Basic',
-              href: '/web-basic',
-            },
-            {
-              title: 'Service',
-              href: '/service',
-            },
-            {
-              title: 'Startup',
-              href: '/startup',
-            },
-            {
-              title: 'Enterprise',
-              href: '/enterprise',
-            },
-            {
-              title: 'Could Hosting',
-              href: '/cloud-hosting',
-            },
-            {
-              title: 'Agency',
-              href: '/agency',
-            },
-            {
-              title: 'Design Company',
-              href: '/design-company',
-            },
-            {
-              title: 'Logistics',
-              href: '/logistics',
-            },
-          ],
-        },
-      },
+        {
+          title: 'Politics and Advocacy',
+          href: '/politics-and-advocacy'
+        }
+      ]
     },
-    pages: {
-      title: 'Pages',
-      id: 'supported-pages',
-      children: {
-        career: {
-          groupTitle: 'Career',
-          pages: [
-            {
-              title: 'Lising',
-              href: '/career-listing',
-            },
-            {
-              title: 'Lising Minimal',
-              href: '/career-listing-minimal',
-            },
-            {
-              title: 'Opening',
-              href: '/career-opening',
-            },
-          ],
+    {
+      groupTitle: 'Products',
+      pages: [
+        {
+          title: 'Overview',
+          href: '/overview'
         },
-        helpCenter: {
-          groupTitle: 'Help center',
-          pages: [
-            {
-              title: 'Overview',
-              href: '/help-center',
-            },
-            {
-              title: 'Article',
-              href: '/help-center-article',
-            },
-          ],
-        },
-        company: {
-          groupTitle: 'Company',
-          pages: [
-            {
-              title: 'About',
-              href: '/about',
-            },
-            {
-              title: 'About (Cover)',
-              href: '/about-side-cover',
-            },
-            {
-              title: 'Pricing',
-              href: '/pricing',
-            },
-            {
-              title: 'Terms',
-              href: '/company-terms',
-            },
-          ],
-        },
-        contact: {
-          groupTitle: 'Contact',
-          pages: [
-            {
-              title: 'Reach View',
-              href: '/contact-page',
-            },
-            {
-              title: 'Sidebar Map',
-              href: '/contact-sidebar-map',
-            },
-            {
-              title: 'Cover',
-              href: '/contact-page-cover',
-            },
-          ],
-        },
-        blog: {
-          groupTitle: 'Blog',
-          pages: [
-            {
-              title: 'Newsroom',
-              href: '/blog-newsroom',
-            },
-            {
-              title: 'Reach View',
-              href: '/blog-reach-view',
-            },
-            {
-              title: 'Search',
-              href: '/blog-search',
-            },
-            {
-              title: 'Article',
-              href: '/blog-article',
-            },
-          ],
-        },
-        portfolio: {
-          groupTitle: 'Portfolio',
-          pages: [
-            {
-              title: 'Basic',
-              href: '/portfolio-page',
-            },
-            {
-              title: 'Masonry',
-              href: '/portfolio-masonry',
-            },
-            {
-              title: 'Grid View',
-              href: '/portfolio-grid',
-            },
-            {
-              title: 'Parallax Effect',
-              href: '/agency',
-            },
-          ],
-        },
-      },
+        {
+          title: 'MRP',
+          href: '/mrp'
+        }
+      ]
     },
-    account: {
-      title: 'Account',
-      id: 'account',
-      children: {
-        settings: {
-          groupTitle: 'Settings',
-          pages: [
-            {
-              title: 'General',
-              href: '/account/general',
-            },
-            {
-              title: 'Security',
-              href: '/account/security',
-            },
-            {
-              title: 'Notifications',
-              href: '/account/notifications',
-            },
-            {
-              title: 'Billing',
-              href: '/account/billing',
-            },
-          ],
+    {
+      groupTitle: 'Resource',
+      pages: [
+        {
+          title: 'PROPER Case Study',
+          href: '/proper-case-study'
         },
-        signup: {
-          groupTitle: 'Sign up',
-          pages: [
-            {
-              title: 'Simple',
-              href: '/signup-simple',
-            },
-            {
-              title: 'Cover',
-              href: '/signup-cover',
-            },
-          ],
+        {
+          title: 'Best for Britain Case Study',
+          href: '/best-for-britain-case-study'
         },
-        signin: {
-          groupTitle: 'Sign in',
-          pages: [
-            {
-              title: 'Simple',
-              href: '/signin-simple',
-            },
-            {
-              title: 'Cover',
-              href: '/signin-cover',
-            },
-          ],
-        },
-        password: {
-          groupTitle: 'Password reset',
-          pages: [
-            {
-              title: 'Simple',
-              href: '/password-reset-simple',
-            },
-            {
-              title: 'Cover',
-              href: '/password-reset-cover',
-            },
-          ],
-        },
-        error: {
-          groupTitle: 'Error',
-          pages: [
-            {
-              title: 'Simple',
-              href: '/not-found',
-            },
-            {
-              title: 'Cover',
-              href: '/not-found-cover',
-            },
-          ],
-        },
-      },
+        {
+          title: 'FAQ',
+          href: '/faq'
+        }
+      ]
     },
-  };
+    {
+      groupTitle: 'Company',
+      pages: [
+        {
+          title: 'About',
+          href: '/about'
+        },
+        {
+          title: 'Contact',
+          href: '/contact'
+        },
+        {
+          title: 'Privacy policy',
+          href: '/privacy-policy'
+        }
+      ]
+    },
+    {
+      groupTitle: 'Demo',
+      pages: [
+        {
+          title: 'Sign Up',
+          href: '/signup'
+        },
+        {
+          title: 'Log In',
+          href: '/login'
+        }
+      ]
+    }
+  ]
 
-  const [openSidebar, setOpenSidebar] = useState(false);
+  const [openSidebar, setOpenSidebar] = useState(false)
 
   const handleSidebarOpen = () => {
-    setOpenSidebar(true);
-  };
+    setOpenSidebar(true)
+  }
 
   const handleSidebarClose = () => {
-    setOpenSidebar(false);
-  };
+    setOpenSidebar(false)
+  }
 
-  const open = isMd ? false : openSidebar;
+  const open = isMd ? false : openSidebar
 
   return (
     <div
       className={clsx({
-        [classes.root]: true,
+        [classes.root]: true
       })}
     >
       <Topbar onSidebarOpen={handleSidebarOpen} onSidebarClose={handleSidebarClose} openSidebar={openSidebar} pages={pages} />
-      <main >
+      <main>
         <Sidebar
-        onClose={handleSidebarClose}
-        open={open}
-        variant="temporary"
-        pages={pages}
-      />{children}</main>
+          onClose={handleSidebarClose}
+          open={open}
+          variant='temporary'
+          pages={pages}
+        />{children}
+      </main>
       <Footer pages={pages} />
     </div>
-  );
-};
+  )
+}
 
 Main.propTypes = {
-  children: PropTypes.node,
-};
+  children: PropTypes.node
+}
 
-export default Main;
+export default Main

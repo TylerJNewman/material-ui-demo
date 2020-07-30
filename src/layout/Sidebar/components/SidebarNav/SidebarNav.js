@@ -39,7 +39,7 @@ const CustomRouterLink = forwardRef((props, ref) => (
   </div>
 ))
 
-const NestListItem = props => {
+const NestListItem = ({ groupTitle, pages }) => {
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
 
@@ -49,14 +49,23 @@ const NestListItem = props => {
   return (
     <>
       <ListItem button onClick={handleClick}>
-        <ListItemText primary='Inbox' className={open ? classes.nestedMenuItemExpanded : null} />
+        <ListItemText primary={groupTitle} className={open ? classes.nestedMenuItemExpanded : null} />
         {open ? <ExpandLess className={classes.nestedMenuItemExpanded} /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout='auto' unmountOnExit>
         <List component='div' disablePadding>
-          <ListItem button className={classes.nestedMenuItem}>
-            <ListItemText primary='Starred' className={open ? classes.nestedMenuItemExpanded : null} />
-          </ListItem>
+          {pages.map(page => (
+            <ListItem
+              key={page.title}
+              button
+              className={classes.nestedMenuItem}
+            >
+              <ListItemText
+                primary={page.title}
+                className={open ? classes.nestedMenuItemExpanded : null}
+              />
+            </ListItem>
+          ))}
         </List>
       </Collapse>
     </>
@@ -70,16 +79,9 @@ const SidebarNav = props => {
   return (
     <div className={classes.navigationContainer}>
       <List {...rest} className={clsx(classes.root, className)}>
-        <ListItem button>
-          <ListItemText primary='Spam' />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary='Spam' />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary='Spam' />
-        </ListItem>
-        <NestListItem />
+        {pages.map(page => (
+          <NestListItem key={page.id} {...page} />
+        ))}
       </List>
     </div>
   )
