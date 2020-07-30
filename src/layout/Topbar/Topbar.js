@@ -205,14 +205,14 @@ const Topbar = props => {
           alignItems='center'
         >
           <Grid item xs={4} sm={2} lg={2} className={classes.logoContainer}>
-            <a href='/' title='thefront'>
+            <Link href='/'>
               <Image
                 className={classes.logoImage}
                 src='/images/logo.png'
                 alt='Logo'
                 lazy={false}
               />
-            </a>
+            </Link>
           </Grid>
           <Grid
             item
