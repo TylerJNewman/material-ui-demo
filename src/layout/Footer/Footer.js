@@ -95,6 +95,12 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 14,
     paddingTop: 2,
     paddingBottom: 2
+  },
+  copyrightText: {
+    color: '#fff',
+    fontSize: 14,
+    paddingTop: 50,
+    paddingBottom: 5
   }
 }))
 
@@ -159,6 +165,26 @@ const SocialLinkComponent = ({ socialLinks }) => {
   )
 }
 
+const CopyrightComponent = ({ copyright }) => {
+  const classes = useStyles()
+  return (
+    <>
+      <Grid container item xs={12}>
+        {copyright.map((line, i) => (
+          <Typography
+            key={i}
+            variant='body2'
+            gutterBottom
+            className={classes.copyrightText}
+          >
+            {line}
+          </Typography>
+        ))}
+      </Grid>
+    </>
+  )
+}
+
 const AddressComponent = ({ address }) => {
   const classes = useStyles()
   return (
@@ -177,7 +203,7 @@ const AddressComponent = ({ address }) => {
   )
 }
 
-const FooterColumn = ({ pagesColumn, address, socialLinks }) => (
+const FooterColumn = ({ pagesColumn, address, socialLinks, copyright }) => (
   <Grid item xs={6} sm={3}>
     {pagesColumn &&
       <PagesColumnContent pagesColumn={pagesColumn} />}
@@ -188,23 +214,26 @@ const FooterColumn = ({ pagesColumn, address, socialLinks }) => (
   </Grid>
 )
 
-const FooterRow = ({ pagesRow, address, socialLinks }) => (
-  <Grid container item spacing={4} xs={12}>
-    {pagesRow.map((pagesColumn, i) => (
-      <FooterColumn
-        key={i}
-        pagesColumn={pagesColumn}
-      />
-    ))}
-    {address &&
-      <FooterColumn address={address} />}
-    {socialLinks &&
-      <FooterColumn socialLinks={socialLinks} />}
-  </Grid>
+const FooterRow = ({ pagesRow, address, socialLinks, copyright }) => (
+  <>
+    <Grid container item spacing={4} xs={12}>
+      {pagesRow?.map((pagesColumn, i) => (
+        <FooterColumn
+          key={i}
+          pagesColumn={pagesColumn}
+        />
+      ))}
+      {address &&
+        <FooterColumn address={address} />}
+      {socialLinks &&
+        <FooterColumn socialLinks={socialLinks} />}
+    </Grid>
+  </>
+
 )
 
 const Footer = (props) => {
-  const { pages, className, address, socialLinks, ...rest } = props
+  const { pages, className, address, socialLinks, copyright, ...rest } = props
   const classes = useStyles()
   return (
     <Grid
@@ -229,6 +258,9 @@ const Footer = (props) => {
           pagesRow={pages.slice(4, 8)}
           address={address}
           socialLinks={socialLinks}
+        />
+        <CopyrightComponent
+          copyright={copyright}
         />
       </Grid>
     </Grid>

@@ -140,6 +140,8 @@ const Main = props => {
     }
   ]
 
+  const copyright = ['© 2019 focaldata. All rights reserved']
+
   const [openSidebar, setOpenSidebar] = useState(false)
 
   const handleSidebarOpen = () => {
@@ -176,6 +178,7 @@ const Main = props => {
         pages={pages}
         address={address}
         socialLinks={socialLinks}
+        copyright={copyright}
       />
     </div>
   )
