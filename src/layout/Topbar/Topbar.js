@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import Link from 'components/atoms/Link'
 import {
   makeStyles,
   AppBar,
@@ -130,9 +131,10 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const MenuGroup = props => {
+const MenuGroup = ({ pagesGroup }) => {
   const classes = useStyles()
   const handlePopup = usePopupState({ variant: 'popover', popupId: 'demoMenu' })
+  console.log(pagesGroup)
   return (
     <>
       <Button
@@ -144,7 +146,7 @@ const MenuGroup = props => {
           variant='body1'
           style={{ fontSize: 16 }}
         >
-        Solution
+          {pagesGroup.groupTitle}
         </Typography>
       </Button>
       <Menu
@@ -164,39 +166,22 @@ const MenuGroup = props => {
           horizontal: 'left'
         }}
       >
-        <MenuItem
-          className={classes.menuItem}
-          onClick={handlePopup.close}
-        >
-          <Typography
-            variant='body2'
-            style={{ fontSize: 14 }}
+        {pagesGroup.pages.map(({ href, title }, i) => (
+          <MenuItem
+            key={i}
+            className={classes.menuItem}
+            onClick={handlePopup.close}
+            component={Link}
+            href={href}
           >
-        Solution lajkdsflkajsdf
-          </Typography>
-        </MenuItem>
-        <MenuItem
-          className={classes.menuItem}
-          onClick={handlePopup.close}
-        >
-          <Typography
-            variant='body2'
-            style={{ fontSize: 14 }}
-          >
-        Solution sdf
-          </Typography>
-        </MenuItem>
-        <MenuItem
-          className={classes.menuItem}
-          onClick={handlePopup.close}
-        >
-          <Typography
-            variant='body2'
-            style={{ fontSize: 14 }}
-          >
-        Solution
-          </Typography>
-        </MenuItem>
+            <Typography
+              variant='body2'
+              style={{ fontSize: 14 }}
+            >
+              {title}
+            </Typography>
+          </MenuItem>
+        ))}
       </Menu>
     </>
   )
@@ -206,7 +191,6 @@ const Topbar = props => {
   const { onSidebarOpen, onSidebarClose, openSidebar, pages, ...rest } = props
 
   const classes = useStyles()
-
   return (
     <AppBar
       {...rest}
@@ -240,10 +224,9 @@ const Topbar = props => {
             lg={9}
           >
             <Hidden smDown>
-              <MenuGroup />
-              <MenuGroup />
-              <MenuGroup />
-              <MenuGroup />
+              {pages.map((pagesGroup, i) => (
+                <MenuGroup key={i} pagesGroup={pagesGroup} />
+              ))}
               <Button className={classes.login}>
                 <Typography
                   variant='body1'

@@ -61,7 +61,7 @@ const Main = props => {
       ]
     },
     {
-      groupTitle: 'Resource',
+      groupTitle: 'Resources',
       pages: [
         {
           title: 'PROPER Case Study',
@@ -162,7 +162,7 @@ const Main = props => {
     >
       <Topbar
         onSidebarOpen={handleSidebarOpen} onSidebarClose={handleSidebarClose} openSidebar={openSidebar}
-        pages={pages}
+        pages={pages.filter(x => x.groupTitle !== 'Demo')}
       />
       <div className={classes.headerSpacer} />
       <Sidebar
