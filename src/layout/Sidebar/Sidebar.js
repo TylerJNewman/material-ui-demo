@@ -16,12 +16,6 @@ const useStyles = makeStyles(theme => ({
     height: 'calc(100% - 9.5vh)',
     marginTop: '9.5vh'
   },
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
-    padding: theme.spacing(1)
-  },
   nav: {
     marginBottom: theme.spacing(1)
   }
@@ -42,9 +36,7 @@ const Sidebar = props => {
       variant={variant}
       elevation={0}
     >
-      <div {...rest} className={clsx(classes.root, className)}>
-        <SidebarNav className={classes.nav} pages={pages} onClose={onClose} />
-      </div>
+      <SidebarNav className={classes.nav} pages={pages} onClose={onClose} />
     </Drawer>
   )
 }

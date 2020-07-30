@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import Link from 'next/link'
+import { Link } from 'components/atoms'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
@@ -18,9 +18,6 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     color: theme.palette.primary.main
   },
-  menu: {
-    display: 'flex'
-  },
   nestedMenuItem: {
     paddingLeft: theme.spacing(4)
   },
@@ -30,14 +27,7 @@ const useStyles = makeStyles(theme => ({
   nestedMenuItemExpanded: {
     color: '#14465A'
   }
-
 }))
-
-const CustomRouterLink = forwardRef((props, ref) => (
-  <div ref={ref} style={{ flexGrow: 1 }}>
-    <Link {...props} />
-  </div>
-))
 
 const NestListItem = ({ groupTitle, pages }) => {
   const classes = useStyles()
@@ -59,6 +49,8 @@ const NestListItem = ({ groupTitle, pages }) => {
               key={page.title}
               button
               className={classes.nestedMenuItem}
+              component={Link}
+              href='/foo'
             >
               <ListItemText
                 primary={page.title}
