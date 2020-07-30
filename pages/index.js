@@ -4,6 +4,10 @@ import clsx from 'clsx'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { useMediaQuery } from '@material-ui/core'
 import { Topbar, Footer, Sidebar } from '../src/layout'
+import FacebookIcon from '@material-ui/icons/Facebook'
+import TwitterIcon from '@material-ui/icons/Twitter'
+import InstagramIcon from '@material-ui/icons/Instagram'
+import PinterestIcon from '@material-ui/icons/Pinterest'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -105,6 +109,37 @@ const Main = props => {
     }
   ]
 
+  const address = [
+    'focaldata',
+    '77 East Rd',
+    'Hoxton',
+    'London',
+    'N1 6AH'
+  ]
+
+  const socialLinks = [
+    {
+      href: 'https://facebook.com',
+      alt: 'Facebook',
+      icon: <FacebookIcon />
+    },
+    {
+      href: 'https://twitter.com',
+      alt: 'Twitter',
+      icon: <TwitterIcon />
+    },
+    {
+      href: 'https://pinterest.com',
+      alt: 'Pinterest',
+      icon: <PinterestIcon />
+    },
+    {
+      href: 'https://Instagram.com',
+      alt: 'Instagram',
+      icon: <InstagramIcon />
+    }
+  ]
+
   const [openSidebar, setOpenSidebar] = useState(false)
 
   const handleSidebarOpen = () => {
@@ -137,7 +172,11 @@ const Main = props => {
       <main>
         {children}
       </main>
-      <Footer pages={pages} />
+      <Footer
+        pages={pages}
+        address={address}
+        socialLinks={socialLinks}
+      />
     </div>
   )
 }

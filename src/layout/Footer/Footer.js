@@ -1,46 +1,39 @@
-import React, { forwardRef } from 'react'
-import Link from 'next/link'
+import React from 'react'
+import { Image } from 'components/atoms'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
-import {
-  Typography,
-  IconButton,
-  Grid,
-  List,
-  ListItem
-} from '@material-ui/core'
-import FacebookIcon from '@material-ui/icons/Facebook'
-import TwitterIcon from '@material-ui/icons/Twitter'
-import InstagramIcon from '@material-ui/icons/Instagram'
-import PinterestIcon from '@material-ui/icons/Pinterest'
+import { Typography, IconButton, Grid, List, ListItem, Link } from '@material-ui/core'
 
-import { Image } from 'components/atoms'
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    padding: theme.spacing(6, 0),
-    [theme.breakpoints.up('md')]: {
-      padding: theme.spacing(12, 0)
-    },
-    background: '#FF6E5A'
+    width: '100vw',
+    display: 'flex',
+    paddingTop: 120,
+    paddingBottom: 120,
+    justifyContent: 'center',
+    backgroundColor: theme.palette.primary.main
   },
   footerContainer: {
-    maxWidth: 1100,
-    width: '100%',
-    margin: '0 auto',
-    padding: theme.spacing(0, 2)
-  },
-  logoContainerItem: {
-    paddingTop: 0
+    width: '60vw',
+    [theme.breakpoints.up('md')]: {
+      width: '70vw'
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '85vw'
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: '90vw'
+    }
   },
   logoContainer: {
     width: 120,
-    height: 32
+    height: 32,
+    marginBottom: 50
   },
   logoImage: {
     height: 20,
-    marginBottom: 50
+    width: 133.5
   },
   groupTitle: {
     textTransform: 'uppercase',
@@ -57,9 +50,6 @@ const useStyles = makeStyles(theme => ({
     '&:last-child': {
       marginRight: 0
     }
-  },
-  icon: {
-    fontSize: 24
   },
   menuListContainer: {
     padding: '0 !important'
@@ -89,70 +79,206 @@ const useStyles = makeStyles(theme => ({
   },
   navLink: {
     color: 'rgba(255,255,255,.6)'
+  },
+  anchorElement: {
+    color: 'inherit',
+    textDecoration: 'inherit'
+  },
+  anchorText: {
+    color: '#fff',
+    fontSize: 14,
+    paddingTop: 5,
+    paddingBottom: 5
+  },
+  addressText: {
+    color: '#fff',
+    fontSize: 14,
+    paddingTop: 2,
+    paddingBottom: 2
   }
 }))
 
-const CustomRouterLink = forwardRef((props, ref) => (
-  <div ref={ref} style={{ flexGrow: 1 }}>
-    <Link {...props} />
-  </div>
-))
-
-const Footer = props => {
-  const { pages, className, ...rest } = props
-
+const PagesLinks = ({ pages }) => {
   const classes = useStyles()
 
   return (
-    <div {...rest} className={clsx(classes.root, className)}>
-      <div className={classes.footerContainer}>
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={2}>
-            <List disablePadding>
-              <ListItem disableGutters className={classes.logoContainerItem}>
-                <div className={classes.logoContainer}>
-                  <a href='/' title='thefront'>
-                    <Image
-                      className={classes.logoImage}
-                      src='/images/logo-negative.png'
-                      alt='thefront'
-                      lazy={false}
-                    />
-                  </a>
-                </div>
-              </ListItem>
-              <ListItem disableGutters>
-                <IconButton className={classes.socialIcon}>
-                  <FacebookIcon className={classes.icon} />
-                </IconButton>
-                <IconButton className={classes.socialIcon}>
-                  <InstagramIcon className={classes.icon} />
-                </IconButton>
-                <IconButton className={classes.socialIcon}>
-                  <TwitterIcon className={classes.icon} />
-                </IconButton>
-                <IconButton className={classes.socialIcon}>
-                  <PinterestIcon className={classes.icon} />
-                </IconButton>
-              </ListItem>
-            </List>
-          </Grid>
-          <Grid item xs={12} md={10} className={classes.menuListContainer}>
-            <Grid container spacing={0}>
-              <Grid item className={classes.listItem} />
-              <Grid item className={classes.listItem} />
-              <Grid item className={classes.listItem} />
-            </Grid>
-          </Grid>
+    <>
+      {pages.map(({ title, href }) => (
+        <a key={title} href={href} className={classes.anchorElement}>
+          <Typography
+            variant='body2'
+            gutterBottom
+            className={classes.anchorText}
+          >
+            {title}
+          </Typography>
+        </a>
+      ))}
+    </>
+  )
+}
+
+const PagesColumnContent = ({ pagesColumn }) => {
+  const { groupTitle, pages } = pagesColumn
+  return (
+    <>
+      <Typography
+        component='h4'
+        variant='subtitle2'
+        gutterBottom
+        style={{
+          color: '#fff',
+          fontSize: 16
+        }}
+      >
+        {groupTitle}
+      </Typography>
+      <PagesLinks pages={pages} />
+    </>
+  )
+}
+
+const SocialLinkComponent = ({ socialLinks }) => {
+  const classes = useStyles()
+  return (
+    <List disablePadding>
+      <ListItem disableGutters>
+        {socialLinks.map(link => (
+          <IconButton
+            key={link.alt}
+            className={classes.socialIcon}
+            href={link.href}
+            alt={link.alt}
+            component={Link}
+          >
+            {link.icon}
+          </IconButton>
+        ))}
+      </ListItem>
+    </List>
+  )
+}
+
+const AddressComponent = ({ address }) => {
+  const classes = useStyles()
+  return (
+    <>
+      {address.map((line, i) => (
+        <Typography
+          key={i}
+          variant='body2'
+          gutterBottom
+          className={classes.addressText}
+        >
+          {line}
+        </Typography>
+      ))}
+    </>
+  )
+}
+
+const FooterColumn = ({ pagesColumn, address, socialLinks }) => (
+  <Grid item xs={6} sm={3}>
+    {pagesColumn &&
+      <PagesColumnContent pagesColumn={pagesColumn} />}
+    {address &&
+      <AddressComponent address={address} />}
+    {socialLinks &&
+      <SocialLinkComponent socialLinks={socialLinks} />}
+  </Grid>
+)
+
+const FooterRow = ({ pagesRow, address, socialLinks }) => (
+  <Grid container item spacing={4} xs={12}>
+    {pagesRow.map((pagesColumn, i) => (
+      <FooterColumn
+        key={i}
+        pagesColumn={pagesColumn}
+      />
+    ))}
+    {address &&
+      <FooterColumn address={address} />}
+    {socialLinks &&
+      <FooterColumn socialLinks={socialLinks} />}
+  </Grid>
+)
+
+const Footer = (props) => {
+  const { pages, className, address, socialLinks, ...rest } = props
+  const classes = useStyles()
+  return (
+    <Grid
+      container
+      justify='center'
+      {...rest}
+      className={clsx(classes.root, className)}
+    >
+      <Grid item className={classes.footerContainer}>
+        <Grid container item className={classes.logoContainer}>
+          <a href='/' title='logo'>
+            <Image
+              className={classes.logoImage}
+              src='/images/logo-negative.png'
+              alt='logo'
+              lazy={false}
+            />
+          </a>
         </Grid>
-      </div>
-    </div>
+        <FooterRow pagesRow={pages.slice(0, 4)} />
+        <FooterRow
+          pagesRow={pages.slice(4, 8)}
+          address={address}
+          socialLinks={socialLinks}
+        />
+      </Grid>
+    </Grid>
   )
 }
 
 Footer.propTypes = {
   className: PropTypes.string,
-  pages: PropTypes.array.isRequired
+  pages: PropTypes.array.isRequired,
+  address: PropTypes.array.isRequired
 }
 
 export default Footer
+
+// <Grid container spacing={4}>
+//   <Grid item xs={12} md={2}>
+//     <List disablePadding>
+//       <ListItem disableGutters className={classes.logoContainerItem}>
+//         <div className={classes.logoContainer}>
+//           <a href='/' title='thefront'>
+//             <Image
+//               className={classes.logoImage}
+//               src='/images/logo-negative.png'
+//               alt='thefront'
+//               lazy={false}
+//             />
+//           </a>
+//         </div>
+//       </ListItem>
+//       <ListItem disableGutters>
+//         <IconButton className={classes.socialIcon}>
+//           <FacebookIcon className={classes.icon} />
+//         </IconButton>
+//         <IconButton className={classes.socialIcon}>
+//           <InstagramIcon className={classes.icon} />
+//         </IconButton>
+//         <IconButton className={classes.socialIcon}>
+//           <TwitterIcon className={classes.icon} />
+//         </IconButton>
+//         <IconButton className={classes.socialIcon}>
+//           <PinterestIcon className={classes.icon} />
+//         </IconButton>
+//       </ListItem>
+//     </List>
+//   </Grid>
+//   <Grid item xs={12} md={10} className={classes.menuListContainer}>
+//     <Grid container spacing={0}>
+//       <Grid item className={classes.listItem} />
+//       <Grid item className={classes.listItem} />
+//       <Grid item className={classes.listItem} />
+//     </Grid>
+//   </Grid>
+// </Grid>
