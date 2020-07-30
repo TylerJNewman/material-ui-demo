@@ -300,7 +300,7 @@ Topbar.propTypes = {
   className: PropTypes.string,
   onSidebarOpen: PropTypes.func,
   onSidebarClose: PropTypes.func,
-  pages: PropTypes.object.isRequired
+  pages: PropTypes.array.isRequired
 }
 
 export default Topbar

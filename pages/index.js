@@ -119,14 +119,18 @@ const Main = props => {
         [classes.root]: true
       })}
     >
-      <Topbar onSidebarOpen={handleSidebarOpen} onSidebarClose={handleSidebarClose} openSidebar={openSidebar} pages={pages} />
+      <Topbar
+        onSidebarOpen={handleSidebarOpen} onSidebarClose={handleSidebarClose} openSidebar={openSidebar}
+        pages={pages}
+      />
+      <Sidebar
+        onClose={handleSidebarClose}
+        open={open}
+        variant='temporary'
+        pages={pages}
+      />
       <main>
-        <Sidebar
-          onClose={handleSidebarClose}
-          open={open}
-          variant='temporary'
-          pages={pages}
-        />{children}
+        {children}
       </main>
       <Footer pages={pages} />
     </div>

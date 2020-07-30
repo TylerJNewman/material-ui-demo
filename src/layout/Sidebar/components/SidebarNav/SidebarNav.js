@@ -81,7 +81,7 @@ const SidebarNav = props => {
 
 SidebarNav.propTypes = {
   className: PropTypes.string,
-  pages: PropTypes.object.isRequired,
+  pages: PropTypes.array.isRequired,
   onClose: PropTypes.func
 }
 
