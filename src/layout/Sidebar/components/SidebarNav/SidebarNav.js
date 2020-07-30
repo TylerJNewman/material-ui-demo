@@ -67,12 +67,11 @@ const NestListItem = ({ groupTitle, pages }) => {
 const SidebarNav = props => {
   const { pages, onClose, className, ...rest } = props
   const classes = useStyles()
-
   return (
     <div className={classes.navigationContainer}>
       <List {...rest} className={clsx(classes.root, className)}>
         {pages.map(page => (
-          <NestListItem key={page.id} {...page} />
+          <NestListItem key={page.groupTitle} {...page} />
         ))}
       </List>
     </div>
