@@ -17,12 +17,14 @@ const theme =
       appBar: 1200,
       drawer: 1100
     },
+    shape: {
+      borderRadius: 0
+    },
     overrides: {
       MuiButton: {
         containedSecondary: {
           color: 'white'
-        },
-        fontFamily: 'inherit'
+        }
       },
       MuiCssBaseline: {
         '@global': {

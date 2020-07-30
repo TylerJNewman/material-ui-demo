@@ -6,6 +6,7 @@
     "@material-ui/core": "latest",
     "@material-ui/icons": "^4.9.1",
     "clsx": "^1.1.1",
+    "material-ui-popup-state": "^1.6.1",
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",

@@ -1,24 +1,24 @@
-import React, { forwardRef, useState } from 'react'
-import clsx from 'clsx'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import Link from 'next/link'
-import { makeStyles } from '@material-ui/core/styles'
 import {
+  makeStyles,
   AppBar,
   Toolbar,
   Hidden,
-  List,
-  ListItem,
-  ListItemIcon,
-  Popover,
-  Typography,
   IconButton,
-  colors,
-  Grid
+  Grid,
+  Button,
+  MenuItem,
+  Typography
 } from '@material-ui/core'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import MenuIcon from '@material-ui/icons/Menu'
 import CloseIcon from '@material-ui/icons/Close'
+import Menu from 'material-ui-popup-state/HoverMenu'
+import {
+  usePopupState,
+  bindHover,
+  bindMenu
+} from 'material-ui-popup-state/hooks'
 
 import { Image } from 'components/atoms'
 
@@ -36,9 +36,11 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between'
   },
   toolbar: {
-    maxWidth: 1100,
     width: '100vw',
-    height: '9.5vh'
+    height: '9.5vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   navLink: {
     fontWeight: 300,
@@ -87,13 +89,19 @@ const useStyles = makeStyles(theme => ({
     width: 170
   },
   menu: {
-    display: 'flex',
-    justifyContent: 'space-between'
+    boxShadow: 'none'
+  },
+  menuList: {
+    margin: 0,
+    padding: 0
   },
   menuItem: {
-    marginRight: theme.spacing(5),
-    '&:last-child': {
-      marginRight: 0
+    color: '#2C596B',
+    textTransform: 'none',
+    backgroundColor: '#E8EDEF',
+    '&:hover': {
+      color: 'white',
+      backgroundColor: '#436B7B'
     }
   },
   menuGroupItem: {
@@ -101,140 +109,103 @@ const useStyles = makeStyles(theme => ({
   },
   menuGroupTitle: {
     textTransform: 'uppercase'
+  },
+  menuButton: {
+    color: theme.palette.primary.main,
+    width: 80,
+    marginLeft: 26,
+    marginRight: 26,
+    textTransform: 'none',
+    backgroundColor: 'transparent',
+    '&:hover': { cursor: 'pointer' }
+  },
+  login: {
+    color: theme.palette.white,
+    marginLeft: 26,
+    marginRight: 26,
+    paddingLeft: 15,
+    paddingRight: 15,
+    textTransform: 'none',
+    backgroundColor: theme.palette.primary.main
   }
 }))
 
-const CustomRouterLink = forwardRef((props, ref) => (
-  <div ref={ref}>
-    <Link {...props} />
-  </div>
-))
+const MenuGroup = props => {
+  const classes = useStyles()
+  const handlePopup = usePopupState({ variant: 'popover', popupId: 'demoMenu' })
+  return (
+    <>
+      <Button
+        className={classes.menuButton}
+        aria-haspopup='true'
+        {...bindHover(handlePopup)}
+      >
+        <Typography
+          variant='body1'
+          style={{ fontSize: 16 }}
+        >
+        Solution
+        </Typography>
+      </Button>
+      <Menu
+        className={classes.menu}
+        classes={{
+          list: classes.menuList
+        }}
+        {...bindMenu(handlePopup)}
+        getContentAnchorEl={null}
+        elevation={0}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left'
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left'
+        }}
+      >
+        <MenuItem
+          className={classes.menuItem}
+          onClick={handlePopup.close}
+        >
+          <Typography
+            variant='body2'
+            style={{ fontSize: 14 }}
+          >
+        Solution lajkdsflkajsdf
+          </Typography>
+        </MenuItem>
+        <MenuItem
+          className={classes.menuItem}
+          onClick={handlePopup.close}
+        >
+          <Typography
+            variant='body2'
+            style={{ fontSize: 14 }}
+          >
+        Solution sdf
+          </Typography>
+        </MenuItem>
+        <MenuItem
+          className={classes.menuItem}
+          onClick={handlePopup.close}
+        >
+          <Typography
+            variant='body2'
+            style={{ fontSize: 14 }}
+          >
+        Solution
+          </Typography>
+        </MenuItem>
+      </Menu>
+    </>
+  )
+}
 
 const Topbar = props => {
   const { onSidebarOpen, onSidebarClose, openSidebar, pages, ...rest } = props
 
   const classes = useStyles()
-
-  const [anchorEl, setAnchorEl] = useState(null)
-  const [openedPopoverId, setOpenedPopoverId] = useState(null)
-
-  const handleClick = (event, popoverId) => {
-    setAnchorEl(event.target)
-    setOpenedPopoverId(popoverId)
-  }
-
-  const handleClose = () => {
-    setAnchorEl(null)
-    setOpenedPopoverId(null)
-  }
-
-  // const landings = pages.landings;
-  // const supportedPages = pages.pages;
-  // const account = pages.account;
-
-  const MenuGroup = props => {
-    const { item } = props
-    return (
-      <List disablePadding>
-        <ListItem disableGutters>
-          <Typography
-            variant='body2'
-            color='primary'
-            className={classes.menuGroupTitle}
-          >
-            {item.groupTitle}
-          </Typography>
-        </ListItem>
-        {/* {item.pages.map((page, i) => (
-          <ListItem disableGutters key={i} className={classes.menuGroupItem}>
-            <Typography
-              variant="body1"
-              component={CustomRouterLink}
-              to={page.href}
-              className={clsx(classes.navLink, 'submenu-item')}
-              color="textSecondary"
-              onClick={handleClose}
-            >
-              {page.title}
-            </Typography>
-          </ListItem>
-        ))} */}
-      </List>
-    )
-  }
-
-  // const LandingPages = () => {
-  //   const { services, apps, web } = landings.children;
-  //   return (
-  //     <div className={classes.menu}>
-  //       <div className={classes.menuItem}>
-  //         <MenuGroup item={services} />
-  //         <MenuGroup item={apps} />
-  //       </div>
-  //       <div className={classes.menuItem}>
-  //         <MenuGroup item={web} />
-  //       </div>
-  //     </div>
-  //   );
-  // };
-
-  // const SupportedPages = () => {
-  //   const {
-  //     career,
-  //     helpCenter,
-  //     company,
-  //     contact,
-  //     blog,
-  //     portfolio,
-  //   } = supportedPages.children;
-  //   return (
-  //     <div className={classes.menu}>
-  //       <div className={classes.menuItem}>
-  //         <MenuGroup item={career} />
-  //         <MenuGroup item={helpCenter} />
-  //       </div>
-  //       <div className={classes.menuItem}>
-  //         <MenuGroup item={company} />
-  //         <MenuGroup item={contact} />
-  //       </div>
-  //       <div className={classes.menuItem}>
-  //         <MenuGroup item={blog} />
-  //         <MenuGroup item={portfolio} />
-  //       </div>
-  //     </div>
-  //   );
-  // };
-
-  // const AccountPages = () => {
-  //   const { settings, signup, signin, password, error } = account.children;
-  //   return (
-  //     <div className={classes.menu}>
-  //       <div className={classes.menuItem}>
-  //         <MenuGroup item={settings} />
-  //       </div>
-  //       <div className={classes.menuItem}>
-  //         <MenuGroup item={signup} />
-  //         <MenuGroup item={signin} />
-  //       </div>
-  //       <div className={classes.menuItem}>
-  //         <MenuGroup item={password} />
-  //         <MenuGroup item={error} />
-  //       </div>
-  //     </div>
-  //   );
-  // };
-
-  // const renderPages = id => {
-  //   if (id === 'landing-pages') {
-  //     return <LandingPages />;
-  //   }
-  //   if (id === 'supported-pages') {
-  //     return <SupportedPages />;
-  //   }
-  //   if (id === 'account') {
-  //     return <AccountPages />;
-  //   }
-  // };
 
   return (
     <AppBar
@@ -254,7 +225,7 @@ const Topbar = props => {
               <Image
                 className={classes.logoImage}
                 src='/images/logo.png'
-                alt='thefront'
+                alt='Logo'
                 lazy={false}
               />
             </a>
@@ -268,6 +239,20 @@ const Topbar = props => {
             sm={9}
             lg={9}
           >
+            <Hidden smDown>
+              <MenuGroup />
+              <MenuGroup />
+              <MenuGroup />
+              <MenuGroup />
+              <Button className={classes.login}>
+                <Typography
+                  variant='body1'
+                  style={{ fontSize: 16 }}
+                >
+                Login
+                </Typography>
+              </Button>
+            </Hidden>
             <Hidden mdUp>
               {openSidebar ? (
                 <IconButton
