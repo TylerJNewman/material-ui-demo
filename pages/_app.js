@@ -26,18 +26,6 @@ export default function MyApp (props) {
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <Component {...pageProps} />
-        {/* <style jsx global>{`
-                  @font-face {
-                    font-family: 'proxima-nova, Helvetica ,Arial,Helvetica, sans-serif';
-                    src: url('/fonts/noto-sans-v9-latin-regular.woff2');
-                    font-weight: 300;
-                    font-weight: 400;
-                    font-weight: 700;
-                    font-style: normal;
-                    font-display: swap;
-                  }
-          `}
-        </style> */}
       </ThemeProvider>
     </>
   )
