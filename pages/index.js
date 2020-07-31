@@ -4,10 +4,9 @@ import clsx from 'clsx'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { useMediaQuery } from '@material-ui/core'
 import { Topbar, Footer, Sidebar } from '../src/layout'
-import FacebookIcon from '@material-ui/icons/Facebook'
+import Youtube from '@material-ui/icons/Youtube'
 import TwitterIcon from '@material-ui/icons/Twitter'
-import InstagramIcon from '@material-ui/icons/Instagram'
-import PinterestIcon from '@material-ui/icons/Pinterest'
+import LinkedinIcon from '@material-ui/icons/Linkedin'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -119,9 +118,9 @@ const Main = props => {
 
   const socialLinks = [
     {
-      href: 'https://facebook.com',
-      alt: 'Facebook',
-      icon: <FacebookIcon />
+      href: 'https://youtube.com',
+      alt: 'Youtube',
+      icon: <Youtube />
     },
     {
       href: 'https://twitter.com',
@@ -129,14 +128,9 @@ const Main = props => {
       icon: <TwitterIcon />
     },
     {
-      href: 'https://pinterest.com',
-      alt: 'Pinterest',
-      icon: <PinterestIcon />
-    },
-    {
-      href: 'https://Instagram.com',
-      alt: 'Instagram',
-      icon: <InstagramIcon />
+      href: 'https://linkedin.com',
+      alt: 'Linkedin',
+      icon: <LinkedinIcon />
     }
   ]
 
