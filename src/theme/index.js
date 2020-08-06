@@ -33,6 +33,14 @@ const theme =
           },
           button: {
             fontFamily: 'inherit'
+          },
+          img: {
+            maxWidth: '100%',
+            marginLeft: 0,
+            marginRight: 0,
+            marginTop: 0,
+            padding: 0,
+            borderStyle: 'none'
           }
         }
       }
