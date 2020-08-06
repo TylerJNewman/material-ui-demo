@@ -81,11 +81,6 @@ const useStyles = makeStyles((theme) => ({
 
 const ImageComponentLarge = () => {
   const classes = useStyles()
-  // rerender on mount for animation trigger
-  const [checked, setChecked] = React.useState(false)
-  React.useEffect(() => {
-    setChecked(true)
-  }, [])
 
   return (
     <Grid
@@ -108,7 +103,7 @@ const ImageComponentLarge = () => {
           <Slide
             direction='left'
             mountOnEnter
-            in={checked}
+            in
           >
             <img
               className={classes.heroImageLarge}
@@ -125,11 +120,6 @@ const ImageComponentLarge = () => {
 
 const ImageComponentSmall = () => {
   const classes = useStyles()
-  // rerender on mount for animation trigger
-  const [checked, setChecked] = React.useState(false)
-  React.useEffect(() => {
-    setChecked(true)
-  }, [])
   return (
     <Grid
       item
@@ -138,7 +128,7 @@ const ImageComponentSmall = () => {
       <Slide
         direction='left'
         mountOnEnter
-        in={checked}
+        in
       >
         <img
           className={classes.heroImageSmall}
