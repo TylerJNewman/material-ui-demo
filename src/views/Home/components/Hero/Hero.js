@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '12%'
   },
   container: {
-    background: '#14465A'
+    background: theme.palette.secondary.main
   },
   textContainer: {
     width: '100%',
@@ -140,7 +140,7 @@ const ImageComponentSmall = () => {
   )
 }
 
-const HeroSection = () => {
+const Hero = () => {
   const classes = useStyles()
   const theme = useTheme()
   const largeView = useMediaQuery(theme.breakpoints.up('md'))
@@ -205,4 +205,4 @@ const HeroSection = () => {
   )
 }
 
-export default HeroSection
+export default Hero

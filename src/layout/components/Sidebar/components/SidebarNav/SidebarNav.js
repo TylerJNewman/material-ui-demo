@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import { Link } from 'components/atoms'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     padding: 20
   },
   nestedMenuItemExpanded: {
-    color: '#14465A'
+    color: theme.palette.secondary.main
   }
 }))
 

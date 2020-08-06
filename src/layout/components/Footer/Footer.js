@@ -85,19 +85,19 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'inherit'
   },
   anchorText: {
-    color: '#fff',
+    color: theme.palette.white,
     fontSize: 14,
     paddingTop: 5,
     paddingBottom: 5
   },
   addressText: {
-    color: '#fff',
+    color: theme.palette.white,
     fontSize: 14,
     paddingTop: 2,
     paddingBottom: 2
   },
   copyrightText: {
-    color: '#fff',
+    color: theme.palette.white,
     fontSize: 14,
     paddingTop: 50,
     paddingBottom: 5
@@ -274,43 +274,3 @@ Footer.propTypes = {
 }
 
 export default Footer
-
-// <Grid container spacing={4}>
-//   <Grid item xs={12} md={2}>
-//     <List disablePadding>
-//       <ListItem disableGutters className={classes.logoContainerItem}>
-//         <div className={classes.logoContainer}>
-//           <a href='/' title='thefront'>
-//             <Image
-//               className={classes.logoImage}
-//               src='/images/logo-negative.png'
-//               alt='thefront'
-//               lazy={false}
-//             />
-//           </a>
-//         </div>
-//       </ListItem>
-//       <ListItem disableGutters>
-//         <IconButton className={classes.socialIcon}>
-//           <FacebookIcon className={classes.icon} />
-//         </IconButton>
-//         <IconButton className={classes.socialIcon}>
-//           <InstagramIcon className={classes.icon} />
-//         </IconButton>
-//         <IconButton className={classes.socialIcon}>
-//           <TwitterIcon className={classes.icon} />
-//         </IconButton>
-//         <IconButton className={classes.socialIcon}>
-//           <PinterestIcon className={classes.icon} />
-//         </IconButton>
-//       </ListItem>
-//     </List>
-//   </Grid>
-//   <Grid item xs={12} md={10} className={classes.menuListContainer}>
-//     <Grid container spacing={0}>
-//       <Grid item className={classes.listItem} />
-//       <Grid item className={classes.listItem} />
-//       <Grid item className={classes.listItem} />
-//     </Grid>
-//   </Grid>
-// </Grid>
