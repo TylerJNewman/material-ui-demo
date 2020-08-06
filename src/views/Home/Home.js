@@ -1,10 +1,12 @@
 import React from 'react'
-import { Hero } from './components/Hero'
+import { Hero, Partners } from './components'
+import { partners } from './data'
 
 const Home = () => {
   return (
     <>
       <Hero />
+      <Partners data={partners} />
     </>
   )
 }
