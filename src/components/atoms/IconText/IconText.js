@@ -1,11 +1,11 @@
-import React from 'react';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import React from 'react'
+import clsx from 'clsx'
+import PropTypes from 'prop-types'
+import {makeStyles} from '@material-ui/core/styles'
+import {Typography} from '@material-ui/core'
 
-import { Icon } from 'components/atoms';
-import theme from 'theme';
+// import { Icon } from 'components/atoms';
+import theme from 'theme'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
   title: {
     marginLeft: theme.spacing(1),
   },
-}));
+}))
 
 /**
  * Component to display the icon text
@@ -33,19 +33,19 @@ const IconText = props => {
     iconProps,
     typographyProps,
     ...rest
-  } = props;
+  } = props
 
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <div className={clsx('icon-text', classes.root, className)} {...rest}>
-      <Icon
+      {/* <Icon
         className="icon-text__icon"
         size="small"
         fontIconClass={fontIconClass}
         fontIconColor={color}
         {...iconProps}
-      />
+      /> */}
       <Typography
         noWrap
         variant="subtitle1"
@@ -56,13 +56,13 @@ const IconText = props => {
         {title}
       </Typography>
     </div>
-  );
-};
+  )
+}
 
 IconText.defaultProps = {
   iconProps: {},
   typographyProps: {},
-};
+}
 
 IconText.propTypes = {
   /**
@@ -89,6 +89,6 @@ IconText.propTypes = {
    * Additional properties to pass to the Typography component
    */
   typographyProps: PropTypes.object,
-};
+}
 
-export default IconText;
+export default IconText
